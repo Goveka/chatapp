@@ -16,7 +16,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "nodemon movie.js"
+    "start": "nodemon movie.js"
   },
   "keywords": [],
   "author": "",
