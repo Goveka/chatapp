@@ -1,0 +1,75 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  padding-bottom: 3rem;
+  font-family: sans-serif;
+  background-color: black;
+}
+header{
+  border: 5px solid green;
+  background-color: green;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.30), 0 11px 8px rgba(0,0,0,0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bolder;
+}
+.chats{
+  margin-top: 100px;
+  background-color: #61a2ff;
+  height: 350px;
+  border: 2px solid #61a2ff;
+  width: 300px;
+  margin-left: 350px;
+  color: #0b4013;
+}
+
+#form{
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.25rem;
+  position: relative;
+  top: 300px;
+  display: flex;
+  height: 3rem;
+  box-sizing: border-box;
+}
+.form{
+  border: 5px solid green;
+  width: 250px;
+  height: 250px;
+  background-color: green;
+  margin-left: 35%;
+  margin-top: 20%;
+}
+#input{
+  border: none;
+  padding: 0 1rem;
+  border-radius: 2rem;
+}
+#form > button{
+  background: #333;
+  border: none;
+  padding: 0 1rem;
+  margin: 0.25rem;
+  border-radius: 3px;
+  outline: none;
+  color: #fff;
+}
+
+#messages{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#messages >li{
+  padding:0.5rem 1rem;
+}
+#messages>li:nth-child(odd){
+  background: #efefef;
+}
