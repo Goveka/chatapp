@@ -9,7 +9,9 @@ const port=process.env.PORT || 3009
 
   app.use(express.static('public'))
 
-
+app.get('/',(req,res)=>{
+  res.sendFile(__dirname + '/movie.html')
+})
 
 io.on('connection', (socket)=>{
   socket.on('chat message', msg =>{
