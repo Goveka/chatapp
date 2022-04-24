@@ -73,3 +73,24 @@ header{
 #messages>li:nth-child(odd){
   background: #efefef;
 }
+
+
+@media only screen and (min-width:320px) and (max-width:480px) {
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.chats{
+  margin-top: 100px;
+  background-color: #61a2ff;
+  height: 350px;
+  border: 2px solid #61a2ff;
+  width: 300px;
+  margin-left: 50px;
+  color: #0b4013;
+}
+
+}
