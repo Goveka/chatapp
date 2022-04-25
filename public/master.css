@@ -28,6 +28,7 @@ header{
   width: 300px;
   margin-left: 350px;
   color: #0b4013;
+  overflow: auto;
 }
 
 #form{
@@ -38,6 +39,9 @@ header{
   display: flex;
   height: 3rem;
   box-sizing: border-box;
+  position: relative;
+  top: 30%;
+  left: 350px;
 }
 .form{
   border: 5px solid green;
@@ -46,6 +50,13 @@ header{
   background-color: green;
   margin-left: 35%;
   margin-top: 20%;
+}
+.items{
+  border: 2px solid green;
+  margin-bottom: 10px;
+  border-top-left-radius: 50%;
+  font-weight: bolder;
+  font-size: 1.0rem;
 }
 #input{
   border: none;
@@ -91,6 +102,7 @@ header{
   width: 300px;
   margin-left: 50px;
   color: #0b4013;
+  overflow:auto;
 }
 
 }
