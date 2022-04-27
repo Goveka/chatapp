@@ -4,17 +4,24 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>movie api</title>
-  <link rel="stylesheet" href="master.css">
+ <link rel="stylesheet" href="master.css">
   </head>
   <body >
 <header>
-  <h1>Sizwe chat app</h1>
+   <h1>Sizwe chat app</h1>
 </header>
+<h1>if you don't enter your user name it will return undefined</h1>
+<div class="userName">
+  <label>your name</label>
+  <input type="text" id="name">
+  <button type="button" id="namebutton" >enter</button>
+</div>
 
 <div class="chats">
+  <h3 id="status"></h3>
 <ul id="messages"><ul >
-
 </div>
+
 <form id="form" action="">
   <input type="text" id="input"><button id="button">send</button>
 </form>

@@ -11,13 +11,28 @@ const port=process.env.PORT || 3009
 
 app.get('/',(req,res)=>{
   res.sendFile(__dirname + '/movie.html')
+
+
+
 })
 
-io.on('connection', socket =>{
-  socket.on('chat message', msg =>{
-    io.emit('chat message', msg);
+
+users=[]
+
+  io.on('connection', socket =>{
+    socket.on('chat message', msg =>{
+      io.emit('chat message', msg);
+      });
+      socket.on('setUsername', function (data) {
+        if(users.indexOf(data)> -1){
+          users.push(data);
+          socket.emit('userSet', {userName:data});
+        }else{
+          socket.emit('userExist', data + 'user is taken')
+        }
+      })
   });
-});
+
 
 
 
