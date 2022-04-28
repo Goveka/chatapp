@@ -3,16 +3,16 @@ let messages=document.getElementById("messages")
 let form=document.getElementById('form');
 let input=document.getElementById('input')
 let button=document.getElementById('button')
-let userName=document.getElementById('name').value
+let userName=document.getElementById('name')
 let namebutton= document.getElementById('namebutton')
 const status=document.getElementById('status')
-  let user
+  let user=''
 
 namebutton.addEventListener('click', name)
 
 function name(hi) {
 
-user=userName
+user=userName.value
 console.log(user);
 status.textContent= user + ":" +'joined'
 }
@@ -29,7 +29,7 @@ socket.on('userExist', function (data) {
 })
 
 socket.on('userSet', function(data){
-  user=data.userName;
+  user=data.username;
 
 })
 

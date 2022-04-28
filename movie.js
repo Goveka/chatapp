@@ -16,12 +16,13 @@ app.get('/',(req,res)=>{
 
 })
 
-
+save=[]
 users=[]
 
   io.on('connection', socket =>{
     socket.on('chat message', msg =>{
       io.emit('chat message', msg);
+      save.push(msg)
       });
       socket.on('setUsername', function (data) {
         if(users.indexOf(data)> -1){

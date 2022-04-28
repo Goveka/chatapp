@@ -71,8 +71,8 @@ header{
   width: 350px;
   display: inline-flex;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.22);,0 11px 8px rgba(0, 0, 0, 0.22);
-  top: 20%;
-  left: 25%;
+  margin-top: 20%;
+  left: 5%;
 }
 label{
   border: 1px solid black;
@@ -88,9 +88,7 @@ button{
   outline: none;
   color: #fff;
 }
-h1{
-  color: red;
-}
+
 
 #input{
   border: none;
@@ -129,12 +127,12 @@ h1{
 }
 
 .chats{
-  margin-top: 100px;
+  margin-top: 50px;
   background-color: #61a2ff;
   height: 350px;
   border: 2px solid #61a2ff;
-  width: 300px;
-  margin-left: 50px;
+  width: 350px;
+  margin-left: 5px;
   color: #0b4013;
   overflow:auto;
 }
@@ -149,8 +147,16 @@ h1{
   box-sizing: border-box;
   position: relative;
   top: 30%;
-  left: 50px;
+  left: 5px;
   background-color: #61a2ff;
-  width: 300px;
+  width: 350px;
 }
+
+#status{
+  margin-left: 5%;
+  border: 5px solid white;
+  width: 0 auto;
+  background-color: white;
+}
+
 }
