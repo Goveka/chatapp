@@ -8,7 +8,7 @@ body{
   margin: 0;
   padding-bottom: 3rem;
   font-family: sans-serif;
-  background-color: black;
+  background-color: #0B1755;
 }
 header{
   border: 5px solid green;
@@ -42,6 +42,8 @@ header{
   position: relative;
   top: 30%;
   left: 350px;
+  background-color: #61a2ff;
+  width: 300px;
 }
 #status{
   margin-bottom: 10%;
@@ -71,7 +73,7 @@ header{
   width: 350px;
   display: inline-flex;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.22);,0 11px 8px rgba(0, 0, 0, 0.22);
-  margin-top: 20%;
+  margin-top: 2%;
   left: 5%;
 }
 label{
@@ -94,6 +96,7 @@ button{
   border: none;
   padding: 0 1rem;
   border-radius: 2rem;
+  overflow-wrap: break-word;
 }
 #form > button{
   background: #333;
@@ -117,7 +120,9 @@ button{
   background: #efefef;
 }
 
-
+.items{
+  overflow-wrap: break-word;
+}
 @media only screen and (min-width:320px) and (max-width:480px) {
 
 *{
