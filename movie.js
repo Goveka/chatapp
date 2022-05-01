@@ -20,10 +20,17 @@ save=[]
 users=[]
 
   io.on('connection', socket =>{
+
     socket.on('chat message', msg =>{
       io.emit('chat message', msg);
-      save.push(msg)
+        save.push(msg)
       });
+
+      socket.on('saveMessages', function (save){
+          io.emit('saveMessages', save)
+          console.log('trying to save');
+      })
+
       socket.on('setUsername', function (data) {
         if(users.indexOf(data)> -1){
           users.push(data);
@@ -32,8 +39,14 @@ users=[]
           socket.emit('userExist', data + 'user is taken')
         }
       })
-  });
 
+socket.on('disconnect', ()=>{
+  console.log('user disconnects');
+  io.emit('disco', save)
+})
+
+
+  });
 
 
 
