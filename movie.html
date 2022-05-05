@@ -6,7 +6,7 @@
     <title>chat bot</title>
  <link rel="stylesheet" href="master.css">
   </head>
-  <body  >
+  <body>
 <header >
    <h1>Sizwe chat app</h1>
 </header>
@@ -16,14 +16,14 @@
   <button type="button" id="namebutton" >enter</button>
 </div>
 
-<div class="chats" onClick="save()">
+<div class="chats" onClick="save()" id="chats">
   <h3 id="status"></h3>
   <ul id="saved"></ul>
 <ul id="messages"><ul >
 </div>
 
-<form id="form" action="">
-  <input type="text" id="input"><button id="button">send</button>
+<form id="form" action="save" method="post">
+  <input type="text" id="input" name="messages"><button type="submit" id="button">send</button>
 </form>
 
 

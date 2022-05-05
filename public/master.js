@@ -7,6 +7,7 @@ let userName=document.getElementById('name')
 let namebutton= document.getElementById('namebutton')
 const status=document.getElementById('status')
 const saveElement=document.getElementById('saved')
+let chats=document.getElementById('chats')
   let user=''
 
 namebutton.addEventListener('click', name)
@@ -78,11 +79,17 @@ let item=document.createElement('li');
 item.classList="items"
 item.innerHTML=  msg.user + ':' + msg.input ;
 messages.appendChild(item);
-window.scrollTo(0, document.body.scrollHeight);
-
 })
-socket.on('disco', function (users){
-  let local=JSON.stringify(users)
-  localStorage.setItem('messages', local)
-  saveElement.innerHTML='someone left the chat room'
+
+socket.on('output', function (res){
+  console.log(res);
+  let savedName=res.map((names) => {return names.user})
+  let savedInput=res.map((inputs) => {return inputs.input})
+for (var i = 0; i < savedName.length && savedInput.length; i++) {
+  let item=document.createElement('li');
+  item.classList="items"
+  item.innerHTML=savedName[i] + ':' + savedInput[i];
+  messages.appendChild(item)
+}
+
 })
