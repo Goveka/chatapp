@@ -8,38 +8,25 @@ let namebutton= document.getElementById('namebutton')
 const status=document.getElementById('status')
 const saveElement=document.getElementById('saved')
 let chats=document.getElementById('chats')
+let userId=document.getElementById('userId')
+let time=document.getElementById('time').innerHTML='Time:'+ new Date()
   let user=''
 
 namebutton.addEventListener('click', name)
 
 function name(hi) {
 
-user=userName.value
-console.log(user);
-status.textContent= user + ":" +'joined'
-
-
-let safe=localStorage.getItem('messages')
-let safely=JSON.parse(safe)
-
-let objs=safely.map(easy =>{
-return  easy.user
-})
-
-let bj=safely.map(easy =>{
-return easy.input
-})
-
-for (var i = 0; i < objs.length && bj.length; i++) {
-
-let item=document.createElement('li')
-item.classList="items"
-item.innerHTML=objs[i]+':' +bj[i]
-
-messages.appendChild(item)
-console.log( objs[i])
+if (userName.value === '') {
+  alert('hey mother fucker enter your name')
+}else if (userName.value < 3) {
+  alert('hey bitch username is really short')
+}else {
+  chats.style.display='block';
+  form.style.display="flex";
+  userId.style.display="none";
+  user=userName.value
+  status.innerHTML= user + ":" +'joined'
 }
-
 }
 
 
@@ -67,28 +54,23 @@ function emaen(hello) {
 }
 }
 
-function save() {
-
-
-}
-
 
 socket.on('chat message', function (msg) {
-  console.log('user connection');
+
 let item=document.createElement('li');
 item.classList="items"
-item.innerHTML=  msg.user + ':' + msg.input ;
+item.innerHTML=  msg.user + ':' + msg.input;
 messages.appendChild(item);
 })
 
 socket.on('output', function (res){
-  console.log(res);
+
   let savedName=res.map((names) => {return names.user})
   let savedInput=res.map((inputs) => {return inputs.input})
 for (var i = 0; i < savedName.length && savedInput.length; i++) {
   let item=document.createElement('li');
   item.classList="items"
-  item.innerHTML=savedName[i] + ':' + savedInput[i];
+  item.innerHTML=savedName[i] + ':' + savedInput[i]  ;
   messages.appendChild(item)
 }
 

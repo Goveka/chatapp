@@ -21,6 +21,7 @@ header{
   font-weight: bolder;
 }
 .chats{
+  display: none;
   margin-top: 100px;
   background-color: #61a2ff;
   height: 350px;
@@ -36,7 +37,7 @@ header{
   padding: 0.25rem;
   position: relative;
   top: 300px;
-  display: flex;
+  display: none;
   height: 3rem;
   box-sizing: border-box;
   position: relative;
@@ -57,11 +58,11 @@ header{
   margin-top: 20%;
 }
 .items{
-  border: 2px solid pink;
   margin-bottom: 10px;
   font-weight: bolder;
-  font-size: 1.0rem;
-  background-color: pink
+  font-size: 1.2rem;
+  background-color: pink;
+  border: 3px solid white;33
 
 }
 .userName{
@@ -73,12 +74,13 @@ header{
   width: 350px;
   display: inline-flex;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.22);,0 11px 8px rgba(0, 0, 0, 0.22);
-  margin-top: 2%;
-  left: 5%;
+  margin-top: 40%;
 }
+
 label{
   border: 1px solid black;
   background-color: black;
+  text-align: center;
 }
 
 button{
@@ -132,14 +134,44 @@ button{
 }
 
 .chats{
-  margin-top: 50px;
+  margin-top: 20px;
   background-color: #61a2ff;
-  height: 350px;
+  height: 580px;
   border: 2px solid #61a2ff;
   width: 350px;
   margin-left: 5px;
   color: #0b4013;
   overflow:auto;
+
+}
+
+.userName{
+  position: relative;
+  color: green;
+  font-weight: bolder;
+  border: 5px solid white;
+  background-color: white;
+  display: inline-flex;
+  width: 350px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.22);,0 11px 8px rgba(0, 0, 0, 0.22);
+  margin-top: 40%;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+label{
+  border: 1px solid black;
+  background-color: black;
+  text-align: center;
+  height: 30px;
+}
+
+
+#name{
+height: 30px;
+}
+#namebutton{
+  height: 30px;
 }
 
 #form{
@@ -147,7 +179,7 @@ button{
   padding: 0.25rem;
   position: relative;
   top: 300px;
-  display: flex;
+  display: none;
   height: 3rem;
   box-sizing: border-box;
   position: relative;
@@ -159,6 +191,7 @@ button{
 
 #status{
   margin-left: 5%;
+  margin-bottom: 5%;
   border: 5px solid white;
   width: 0 auto;
   background-color: white;
