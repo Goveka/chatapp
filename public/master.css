@@ -22,12 +22,12 @@ header{
 }
 .chats{
   display: none;
-  margin-top: 100px;
+  margin-top: 10px;
   background-color: #61a2ff;
-  height: 350px;
+  height: 500px;
   border: 2px solid #61a2ff;
-  width: 300px;
-  margin-left: 350px;
+  width: 800px;
+  margin-left: 250px;
   color: #0b4013;
   overflow: auto;
 }
@@ -42,9 +42,9 @@ header{
   box-sizing: border-box;
   position: relative;
   top: 30%;
-  left: 350px;
+  left: 250px;
   background-color: #61a2ff;
-  width: 300px;
+  width: 800px;
 }
 #status{
   margin-bottom: 10%;
@@ -61,8 +61,10 @@ header{
   margin-bottom: 10px;
   font-weight: bolder;
   font-size: 1.2rem;
-  background-color: pink;
-  border: 3px solid white;33
+  background-color: green;
+  border: 3px solid white;
+  color: black;
+  border-radius: 2rem;
 
 }
 .userName{
@@ -99,6 +101,7 @@ button{
   padding: 0 1rem;
   border-radius: 2rem;
   overflow-wrap: break-word;
+  width: 90%;
 }
 #form > button{
   background: #333;
@@ -125,6 +128,12 @@ button{
 .items{
   overflow-wrap: break-word;
 }
+#profile{
+  border: 1px solid black;
+  border-radius: 50%;
+  width: 40px;
+}
+
 @media only screen and (min-width:320px) and (max-width:480px) {
 
 *{
