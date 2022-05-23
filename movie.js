@@ -2,8 +2,8 @@ const express=require('express')
 const app=express()
 const assert = require('assert');
 const mongoose = require('mongoose');
-//const url='mongodb+srv://Sizwenkala:sizwe123@cluster0.fejtt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
-const url='mongodb://localhost:27017/test'
+const url='mongodb+srv://Sizwenkala:sizwe123@cluster0.fejtt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+//const url='mongodb://localhost:27017/test'
 const http=require('http')
 const {Server}= require('socket.io');
 const server=http.createServer(app)
