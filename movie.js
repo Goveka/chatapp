@@ -16,7 +16,8 @@ const port=process.env.PORT || 3009
 //  app.use(require('body-parser')());
 
 app.get('/',(req,res)=>{
-  res.sendFile(__dirname + '/movie.html')})
+  res.sendFile(__dirname + '/movie.html')
+})
 
 
 // connecting to database

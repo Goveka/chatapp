@@ -17,7 +17,13 @@ namebutton.addEventListener('click', name)
 theme.addEventListener('click', change)
 
 function change(changeTheme){
-alert('available soon')
+let body=document.getElementById('body');
+body.style.background="#A17602";
+let header=document.getElementById('header');
+header.style.background="#A13B7A";
+header.style.border="#A13B7A";
+chats.style.background="#8FA156";
+form.style.background="#A13B7A"
 }
 
 
@@ -58,25 +64,29 @@ function emaen(hello) {
 
 let minutes=new Date().getMinutes();
 let hours=new Date().getHours();
-let day=new Date().getDay();
+let week=new Date().getDay();
+let day=new Date().getDate();
+let month=new Date().getMonth();
 let dayWords
-if (day == 1) {
+
+if (week == 1 ) {
   dayWords='Monday'
-}else if (day ==2) {
+}else if (week ==2 ) {
   dayWords='Tuesday'
-}else if (day == 3) {
+}else if (week == 3 ) {
   dayWords='Wednesday'
-}else if (day == 4) {
-  daywords="Thursday"
-}else if (day == 5) {
+}else if (week == 4 ) {
+  dayWords="Thursday"
+}else if (week == 5 ) {
   dayWords='Friday'
-}else if (day == 6) {
-dayWords='Saturday'
-}else if (day ==7) {
+}else if (week == 6 ) {
+dayWords='saturday'
+}else if (week ==7 ) {
   dayWords='sunday'
 }
 
-let date=dayWords + ':' +hours +':'+minutes
+
+let date= dayWords + ':' +hours +':'+minutes
 
   if(input.value){
     socket.emit('chat message', {input:input.value, user:user, time:date});
@@ -85,12 +95,37 @@ let date=dayWords + ':' +hours +':'+minutes
 }
 
 
-socket.on('chat message', function (msg) {
+socket.on('chat message', async function (msg) {
 
 let item=document.createElement('li');
 item.classList="items"
 item.innerHTML=msg.user + ':' + msg.input + '</br>' + msg.time;
 messages.appendChild(item);
+
+
+//create and show notification
+const showNotification =() =>{
+  //create new showNotification
+  const notification= new Notification('SIZWE CHAT APP', {
+    body: 'You have a new messages',
+    icon: 'FB_IMG_16521914196812297.jpg'
+  })
+
+  notification.addEventListener('click', ()=>{
+    window.open('https://chatsizwe.herokuapp.com/')
+    notification.close()
+  })
+}
+
+// check notification permission
+let granted= false;
+if(Notification.permission === 'granted'){
+  granted = true;
+}else if (Notification.permission !== 'denied') {
+  let permission= await Notification.requestPermission();
+  granted = permission === 'granted' ? true : false;
+}
+granted ? showNotification() : console.log('error');
 })
 
 socket.on('output', function (res){
