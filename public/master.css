@@ -170,7 +170,7 @@ button:hover{
 }
 
 .userName{
-  position: relative;
+  position: absolute;
   color: green;
   font-weight: bolder;
   border: 5px solid white;
