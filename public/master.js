@@ -30,10 +30,13 @@ form.style.background="#A13B7A"
 function name(hi) {
 
 if (userName.value === '') {
-  alert('hey mother fucker enter your name')
-}else if (userName.value.length < 3) {
-  alert('hey bitch username is really short')
-}else {
+  alert('hey, please enter your name')
+}else if (userName.value.length <= 3) {
+  alert('hey, your name is really short')
+}else if (userName.value === 'undifined' || userName.value === 'unknown') {
+  alert("hey, that's no a valid name")
+}
+else {
   chats.style.display='block';
   form.style.display="flex";
   userId.style.display="none";

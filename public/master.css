@@ -19,15 +19,20 @@ header{
   justify-content: center;
   color: white;
   font-weight: bolder;
+  width: 100%;
 }
+
+i{
+  color: #0B1755;
+}
+
 .chats{
   display: none;
   margin-top: 10px;
-  background-color: #61a2ff;
+  background-color: #000;
   height: 500px;
-  border: 2px solid #61a2ff;
-  width: 1200px;
-  margin-left: 50px;
+  border: 2px solid #000;
+  width: 100%;
   color: #0b4013;
   overflow: auto;
 }
@@ -42,9 +47,9 @@ header{
   box-sizing: border-box;
   position: relative;
   top: 30%;
-  left: 50px;
-  background-color: #61a2ff;
-  width: 1200px;
+  left: 1px;
+  background-color: black;
+  width: 100%;
 }
 #status{
   margin-bottom: 10%;
@@ -76,7 +81,8 @@ header{
   width: 350px;
   display: inline-flex;
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.22);,0 11px 8px rgba(0, 0, 0, 0.22);
-  margin-top: 40%;
+  margin-top: 15%;
+  margin-left: 20%;
 }
 
 label{
@@ -113,6 +119,11 @@ button{
   color: #fff;
 }
 
+#form > button:hover{
+  background-color: #90FFDA;
+  padding: 5;
+}
+
 #messages{
   list-style-type: none;
   margin: 0;
@@ -122,11 +133,12 @@ button{
   padding:0.5rem 1rem;
 }
 #messages>li:nth-child(odd){
-  background: #efefef;
+  background: white;
 }
 
 .items{
   overflow-wrap: break-word;
+  background-color: lime;
 }
 #profile{
   border: 1px solid black;
@@ -144,14 +156,17 @@ button{
 
 .chats{
   margin-top: 20px;
-  background-color: #61a2ff;
-  height: 580px;
-  border: 2px solid #61a2ff;
-  width: 380px;
-  margin-left: 2px;
+  background-color: black;
+  height: 650px;
+  border: 2px solid black;
+  width: 100%;
   color: #0b4013;
   overflow:auto;
 
+}
+
+button:hover{
+  background-color: #90FFDA;
 }
 
 .userName{
@@ -187,15 +202,13 @@ height: 30px;
   background: rgba(0, 0, 0, 0.15);
   padding: 0.25rem;
   position: relative;
-  top: 300px;
+  top: 100%;
+  left: 1px;
   display: none;
   height: 3rem;
   box-sizing: border-box;
-  position: relative;
-  top: 30%;
-  left: 2px;
-  background-color: #61a2ff;
-  width: 380px;
+  background-color: black;
+  width: 100%;
 }
 
 #status{
