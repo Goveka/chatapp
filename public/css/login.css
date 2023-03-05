@@ -1,0 +1,164 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    background-image: url("cool-background.png");
+    background-repeat: repeat;
+}
+
+header{
+    background: rgb(63,94,251);
+    background: radial-gradient(circle,rgba(63,94,251,1)0%,rgba(0,0,0,1)0%,rgb(3, 18, 87));
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+header > img{
+    max-width: 10%;
+    border-radius: 50vh;
+}
+
+#form{
+    width: 60%;
+    margin-top: 5%;
+    margin-left: 17%;
+    text-align: center;
+    background-color: white;
+    justify-content: center;
+}
+
+#form >form{
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    flex-wrap: wrap;
+    background-color: white;
+}
+
+#form > form > label{
+    background-color: black;
+    color: rgb(5, 28, 158);
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+
+#form > form > input{
+    width: 100%;
+    border-radius: 5em;
+    height: 50px;
+    border: 1px solid black;
+    text-align: center;
+    font-weight: bolder;
+}
+
+button{
+    background-color: black;
+    color: blue;
+    font-size: 1.6rem;
+    width: 50%;
+}
+button:hover{
+    background-color: blue;
+    color: white;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+
+footer{
+    border: 2px solid #3E3E3E;
+    background-color: #3E3E3E;
+    height: auto;
+    text-align: center;
+    padding: 50px;
+    color: white;
+    margin-top: 10%;
+  }
+  .footer > i{
+    background-color: transparent;
+    color: black;
+  }
+
+  @media only screen and (min-width:50px) and (max-width:480px) {
+
+    header > img{
+        max-width: 20%;
+        border-radius: 50vh;
+    }
+
+    #form{
+        width: 75%;
+        margin-top: 5%;
+        margin-left: 10%;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        justify-content: center;
+    }
+    
+    #form >form{
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+        flex-wrap: wrap;
+        background-color: white;
+    }
+    
+    #form > form > label{
+        background-color: black;
+        color: rgb(5, 28, 158);
+        font-weight: bolder;
+        font-size: 1.5rem;
+    }
+    
+    #form > form > input{
+        width: 100%;
+        border-radius: 5em;
+        height: 30px;
+        border: 1px solid black;
+    } 
+  }
+
+  @media only screen and (min-width:481px) and (max-width:1118px) {
+    header > img{
+        max-width: 20%;
+        border-radius: 50vh;
+    }
+
+    #form{
+        width: 90%;
+        margin-top: 5%;
+        margin-left: 5%;
+        box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+        justify-content: center;
+    }
+    
+    #form >form{
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+        flex-wrap: wrap;
+        background-color: white;
+    }
+    
+    #form > form > label{
+        background-color: black;
+        color: rgb(5, 28, 158);
+        font-weight: bolder;
+        font-size: 1.5rem;
+    }
+    
+    #form > form > input{
+        width: 100%;
+        border-radius: 5em;
+        height: 30px;
+        border: 1px solid black;
+    } 
+  }

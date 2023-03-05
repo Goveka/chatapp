@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat corp|| home</title>
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="./css/home.css">
+</head>
+<body>
+    <header>
+        <h1>Chat corp</h1>
+        <h2>welcome</h2>
+        <img src="Image-109992454066564565404-1-iVBOR.png" alt="">
+    </header>
+    <main>
+        <div id="users">
+            <h1>Available users to chat with!!<i class="fas fa-comments fa-2x" id="arrow-down"></i></h1> 
+            <div id="userList">
+                <% users.forEach((user)=>{ %>
+                    <div class="userList"  id="<%=user._id %>" data-id="<%=user._id %>" data-username="<%=user.username %>">
+                        <img src="<%=user.profilePic %>" alt="profile picture">
+                        <h2> <%=user.username %> </h2>
+                        <h4> <strong>hobbies:</strong><%=user.hobbies %> </h4>
+                        <p><%=user.selfDescription %> </p>
+                    </div>
+               <% }) %>
+            </div>
+        </div>
+        <div id="chats">
+            <h1>chats</h1>
+            <h4>click on a unique room to continue your chats</h4>
+            <% chats.forEach((privateChats)=>{ %>
+                <div id="private-chats">
+                    <a href="/private-rooms/<%= privateChats.roomId %>">
+                        <h3>roomId: <%= privateChats.roomId %></h3>
+                        <h3> lastMessage: <%= privateChats.lastMessage %></h3>
+                    </a>
+                </div>
+            <% }) %>
+        </div>
+    </main>
+    <footer>
+        <h2 class="footer">copyright<i class="fas fa-copyright"></i> 2023 - present| chat corp| developed by sizwe| Email:sizwenkala80@gmail.com</h2>
+      </footer>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./javascript/home.js"></script> 
+</body>
+</html> 

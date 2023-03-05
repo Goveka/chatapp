@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat corp|| Sign Up</title>
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="./css/signup.css">
+</head>
+<body>
+    <header>
+        <h4>already a member!! log in <a href="login-page">HERE</a></h4>
+        <h1>Chat corp</h1>
+        <h2>welcome</h2>
+        <img src="Image-109992454066564565404-1-iVBOR.png" alt="">
+        <p>scroll to create an account <i class="fas fa-arrow-down fa-2x" id="arrow-down"></i></p>
+    </header>
+    <main>
+        <div id="profile-container">
+            <h1>click on any image to create a profile pic</h1>
+            <div id="profile-pictures">
+                <img class="profilePics" src="img src=https://i.ibb.co/phzfqv6/12whatsapp-dp-sohohindi-in-300x300.jpg"  alt="profile pic">
+                <img class="profilePics" src="https://i.ibb.co/SPDB4Js/pexels-allec-gomes-6884140.jpg" alt="pexels-allec-gomes-6884140">
+                <img class="profilePics" src="https://i.ibb.co/S5xtysW/pexels-bruno-scramgnon-5007442.jpg" alt="pexels-bruno-scramgnon-5007442">
+                <img class="profilePics" src="https://i.ibb.co/wSwDF6s/pexels-tobias-bj-rkli-1693095.jpg" alt="pexels-tobias-bj-rkli-1693095">
+            </div>
+        </div>
+        <div id="form">
+            <h2>Enter your information to sign up</h2>
+            <form action="/signUp" method="post">
+                <input type="hidden" name="profilePic" id="profilePic" value="https://i.ibb.co/phzfqv6/12whatsapp-dp-sohohindi-in-300x300.jpg" required="true">
+    
+                <label for="hobbies">what are your hobbies</label>
+                <textarea name="hobbies" id="hobbies" cols="30" rows="10" required="true"></textarea>
+    
+                <label for="selfDescription">what can you say about yourself</label>
+                <textarea name="selfDescription" id="selfDescription" cols="30" rows="10"></textarea><br>
+    
+                <label for="username">username</label>
+                <input type="text" id="username" name="username" required="true"><br>
+    
+                <label for="password">password</label>
+                <input type="password" id="password" name="password" required="true">
+
+                <label for="securityQuestion">security Question: what's your primary school nickname?</label>
+                <input type="text" id="securityQuestion" name="securityQuestion" required="true", placeholder="The security question is responsible for recovering your account...">
+    
+                <button type="submit">submit</button>
+            </form>
+            <h2>already signed up <a href="/login-page">login here</a></h2>
+        </div>   
+    </main>
+    <footer>
+        <h2 class="footer">copyright<i class="fas fa-copyright"></i> 2023 - present| chat corp| developed by sizwe| Email:sizwenkala80@gmail.com</h2>
+      </footer>
+      <script src="./javascript/signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,211 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-image: url("cool-background.png");
+    background-repeat: repeat;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bolder;
+}
+
+header{
+    background: rgb(63,94,251);
+    background: radial-gradient(circle,rgba(63,94,251,1)0%,rgba(0,0,0,1)0%,rgb(3, 18, 87));
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+header > img{
+    width: 20%;
+    border-radius: 100vh;
+}
+
+header > h4{
+    position: absolute;
+    top: 3%;
+    left: 67%;
+}
+
+#profile-pictures{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+    justify-content: center;
+    align-items: center;
+}
+
+#profile-pictures > img{
+    width: 17%;
+    border-radius: 10em;
+}
+#profile-container{
+    margin: 5%;
+    text-align: center;
+    background-color: white;
+    color: rgb(5, 28, 158);
+}
+#profile-container > h1{
+    background-color: black;
+    width: 75%;
+    margin-left: 15%;
+}
+
+form{
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3em;
+    justify-content: center;
+    align-items: center;
+    padding: 5%;
+}
+
+form > input{
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+    border-color: black;
+    height: 40px;
+}
+
+form > textarea{
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+    border-color: black;
+}
+
+form > label{
+    background-color: black;
+    color: rgb(5, 28, 158);
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+#form{
+    width: 60%;
+    margin-left: 20%;
+    background-color: white;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.30), 0 11px 8px rgba(0,0,0,0.22);
+}
+
+#form > h2{
+    background-color: rgb(5, 28, 158);
+    width: 50%;
+    margin-left: 24%;
+}
+
+button{
+    background-color: black;
+    color: blue;
+    font-size: 1.6rem;
+    width: 50%;
+}
+button:hover{
+    background-color: blue;
+    color: white;
+    font-weight: bolder;
+    font-size: 1.5rem;
+}
+
+footer{
+    border: 2px solid #3E3E3E;
+    background-color: #3E3E3E;
+    height: auto;
+    text-align: center;
+    padding: 50px;
+    color: white;
+    margin-top: 10%;
+  }
+  .footer > i{
+    background-color: transparent;
+    color: black;
+  }
+
+  @media only screen and (min-width:50px) and (max-width:480px) {
+    header > img{
+        width: 50%;
+        border-radius: 100vh;
+    }
+    
+    header > h4{
+        position: absolute;
+        top: 3%;
+        left: 63%;
+    }
+
+    #profile-pictures > img{
+        width: 40%;
+        border-radius: 10em;
+    }
+    #form{
+        width: 90%;
+        margin-left: 3%;
+        background-color: white;
+        text-align: center;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.30), 0 11px 8px rgba(0,0,0,0.22);
+    }
+    form{
+
+        background-color: white;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3em;
+        justify-content: center;
+        align-items: center;
+        padding: 5%;
+    }
+    #form > h2{
+        background-color: rgb(5, 28, 158);
+        width: 90%;
+        margin-left: 2%;
+    }
+  }
+
+  @media only screen and (min-width:481px) and (max-width:1118px) {
+    header > img{
+        width: 60%;
+        border-radius: 100vh;
+    }
+    
+    header > h4{
+        position: absolute;
+        top: 3%;
+        left: 57%;
+    }
+
+    #profile-pictures > img{
+        width: 40%;
+        border-radius: 10em;
+    }
+    #form{
+        width: 90%;
+        margin-left: 3%;
+        background-color: white;
+        text-align: center;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.30), 0 11px 8px rgba(0,0,0,0.22);
+    }
+    form{
+
+        background-color: white;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3em;
+        justify-content: center;
+        align-items: center;
+        padding: 5%;
+    }
+    #form > h2{
+        background-color: rgb(5, 28, 158);
+        width: 90%;
+        margin-left: 2%;
+    }
+  }
