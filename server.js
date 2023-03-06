@@ -16,7 +16,6 @@ const cookieParser= require('cookie-parser');
 // importing database models
 const User= require('./model/User');
 const Room= require('./model/Room')
-const { cookie } = require('request');
 const { Socket } = require('net');
 
 
