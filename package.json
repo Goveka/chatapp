@@ -2,7 +2,7 @@
   "name": "movie",
   "version": "1.0.0",
   "description": "",
-  "main": "movie.js",
+  "main": "server.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body": "^5.1.0",

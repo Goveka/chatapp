@@ -34,7 +34,7 @@
             <% chats.forEach((privateChats)=>{ %>
                 <div id="private-chats">
                     <a href="/private-rooms/<%= privateChats.roomId %>">
-                        <h3>roomId: <%= privateChats.roomId %></h3>
+                        <h2><%= privateChats.recipientName %></h3>
                         <h3> lastMessage: <%= privateChats.lastMessage %></h3>
                     </a>
                 </div>

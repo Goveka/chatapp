@@ -16,7 +16,6 @@ const cookieParser= require('cookie-parser');
 // importing database models
 const User= require('./model/User');
 const Room= require('./model/Room')
-const { cookie } = require('request');
 const { Socket } = require('net');
 
 
@@ -116,14 +115,17 @@ try {
     const filteredUsers = users.filter(user => user._id.toString() !== userId)
     // rendering each chat room based on if the user is present in the room
     const rooms= await Room.find({users: userId}).populate('users', 'username').sort({'messages.timestamp': -1})
-    const roomData= rooms.map(room =>{
+    const roomData= await Promise.all( rooms.map( async room =>{
       const lastMessage= room.messages[room.messages.length - 1]
+      const recipientId = room.users.find(user => user._id.toString() !== userId).id
+      const recipient= await User.findById(recipientId);
+      const recipientName = recipient ? recipient.username : 'unknown'
       return {
         roomId: room._id,
-        lastMessage: lastMessage ? `${lastMessage.senderId}: ${lastMessage.message}`: 'no messages yet'
+        recipientName: recipientName,
+        lastMessage: lastMessage ? ` ${lastMessage.senderId}: ${lastMessage.message}`: 'no messages yet'
       }
-    })
-    
+    }))
     //render the filtered users using the ejs template
     res.render('home', {users:filteredUsers, chats: roomData})
   } catch (error) {
@@ -173,6 +175,7 @@ app.post('/chat-rooms', async (req,res)=>{
       })
     } else{
       const newRoom = new Room({
+        receipientId: receiverId,
         users: [senderId,receiverId],
         messages: []
       });
