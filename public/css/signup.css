@@ -55,6 +55,7 @@ header > h4{
 #profile-container > h1{
     background-color: black;
     width: 75%;
+    color: whitesmoke;
     margin-left: 15%;
 }
 
@@ -85,7 +86,7 @@ form > textarea{
 
 form > label{
     background-color: black;
-    color: rgb(5, 28, 158);
+    color: white;
     font-weight: bolder;
     font-size: 1.5rem;
 }
@@ -99,8 +100,9 @@ form > label{
 
 #form > h2{
     background-color: rgb(5, 28, 158);
-    width: 50%;
-    margin-left: 24%;
+    color: white;
+    width: 80%;
+    margin-left: 2%;
 }
 
 button{
