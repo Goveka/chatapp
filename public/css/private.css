@@ -43,6 +43,11 @@ header{
     margin-bottom: 2%;
     overflow-wrap: break-word;
 }
+.message-content.sender-me > p{
+    background: -webkit-linear-gradient(#fff, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 .message-content.sender-others{
     background-color: #f1f0f0;
     color: #333;

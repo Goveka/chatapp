@@ -124,11 +124,34 @@ footer{
     }
     #users{
         background-color: white;
-        width: 85%;
+        width: 100%;
         text-align: center;
         justify-content: center;
         padding: 10px;
         overflow: auto;
+    }
+    #userList > div {
+        background-color: rgb(22, 46, 156);
+        color: rgb(255, 255, 255);
+        font-weight: bolder;
+        border-bottom: dashed;
+        padding: 5px;
+    }
+    h2{
+        background: -webkit-linear-gradient(#c75205, #000000);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bolder;
+    }
+    h4{
+        background: -webkit-linear-gradient(#fff, #333);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    p{
+        background: -webkit-linear-gradient(#fff, #333);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 
     #userList > div > img{
