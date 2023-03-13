@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat corp|| login</title>
+    <title>chat corp||forgot password </title>
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/login.css">
-
 </head>
 <body>
     <header>
@@ -17,16 +16,14 @@
     </header>
     <main>
         <div id="form">
-            <h1>log in to your account</h1>
-            <form action="/login" method="post" id="login-form">
+            <h1>Recovery</h1>
+            <form action="/recovery" method="post">
                 <label for="username">username</label>
-                <input type="text" id="username" name="username" required="true">
-                <label for="password">password</label>
-                <input type="password" id="password" name="password" required="true">
-                <button type="submit">submit</button>
+                <input type="text" id="username" name="username" placeholder="username...">
+                <label for="recovery-question">Recovery question|| what was your nickname in primary school?</label>
+                <input type="text" id="recovery-question" name="recoveryQuestion" placeholder="Recovery question...">
+                <button type="submit">Recover</button>
             </form>
-            <h2 id="signUp-btn">Don't have an account yet ? <a href="/">Create one here!!</a></h2>
-            <h3> Forgot password? <a href="/recovery-page">recover here</a></h3>
         </div>
     </main>
     <footer>

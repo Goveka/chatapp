@@ -39,6 +39,7 @@
 const roomId= '<%= roomId %>';
 const username= '<%= userName %>'
 const token= '<%= token %>'
+const date= new Date()
 
 
 
@@ -51,10 +52,15 @@ const messageInput= document.getElementById('message-input');
 const sendBtn= document.getElementById('sendBtn');
 sendBtn.addEventListener('click', (event)=>{
     event.preventDefault();
+    let currentDate= `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}  ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    console.log(currentDate)
     const message= document.getElementById('message-input').value;
-    socket.emit('private message', {message, roomId,  username, token});
+    if (message === '') {
+        alert('The input is empty, please write a message')
+    }else{
+        socket.emit('private message', {message, roomId,  username, token, currentDate});
     document.getElementById('message-input').value= '' ;
-
+    }
 })
 let messages=document.getElementById('messages')
 messages.scrollTop = messages.scrollHeight;
@@ -66,14 +72,13 @@ const messageDiv= document.createElement('div');
 
  const chatMessage = document.createElement('div')
  chatMessage.classList.add('chat-message');
- chatMessage.innerHTML = `<p class="message-sender">${data.senderId}</p><p class="message-text">${data.message}</p>`
+ chatMessage.innerHTML = `<p class="message-sender">${data.senderId}</p><p class="message-text">${data.message}</p><p class="timeStamp">${data.timestamp}`
 
 
 messageDiv.appendChild(chatMessage);
 messages.appendChild(messageDiv);
 messages.scrollTop = messages.scrollHeight;
 })
-
     </script>
 </body>
 </html>

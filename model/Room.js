@@ -7,7 +7,7 @@ const roomSchema = new mongoose.Schema({
     messages: [{
         senderId: String,
         message:  String,
-        timestamp: {type: Date, default:Date.now},
+        timestamp: String,
     }],
 });
 

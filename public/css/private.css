@@ -24,10 +24,10 @@ header{
 
 #messages{
     margin-top: 3%;
-    width: 80%;
+    width: 50%;
     height: 72vh;
     overflow: auto;
-    margin-left: 12%;
+    margin-left: 23%;
     background-color: #0a0909;
     padding: 2%;
 }

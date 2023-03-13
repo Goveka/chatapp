@@ -56,6 +56,11 @@ app.get('/login-page', (req,res)=>{
   res.render('login', {})
 })
 
+//rendering the recovery page
+app.get('/recovery-page',(req,res)=>{
+  res.render('recovery', {})
+})
+
 // user sign in function
 app.post('/login', (req,res)=>{
 const username= req.body.username;
@@ -97,6 +102,42 @@ app.post('/signUp', async(req,res)=>{
   res.render('login', {})
 });
 
+//RECOVERING THE USER ACCOUNT WHEN THEY HAVE FORGOTEN IT
+app.post('/recovery',async (req,res)=>{
+  const {username,recoveryQuestion}= req.body;
+
+  const user= await User.findOne({username:username})
+  const recovery= await User.findOne({securityQuestion:recoveryQuestion})
+
+  if(!user || !recovery){
+    return res.status(400).send({error: 'The username or the security question does not exist'})
+  }
+
+  res.render('updatePassword', {username})
+
+})
+
+// UPDATING THE PASSWORD 
+app.post('/update-password', (req,res)=>{
+  const {username,password}= req.body;
+
+   User.findOne({username:username}, (err, object)=>{
+    if (err) {
+      res.sendStatus(500)
+  }else {
+      object.password = password;
+      object.save(function(err){
+          if (err){
+              res.sendStatus(500)
+              console.error(err)
+          }else {
+            return res.render('login')
+          }
+      })
+  }
+   })
+})
+
 //rendering the home page
 app.get('/home-page', async(req,res)=>{
   const cookie= req.cookies.token;
@@ -113,6 +154,7 @@ try {
     const users = await User.find({});
     //filter out the user with the decoded user id
     const filteredUsers = users.filter(user => user._id.toString() !== userId)
+    const loggedInUser= users.filter(user => user._id.toString() === userId)
     // rendering each chat room based on if the user is present in the room
     const rooms= await Room.find({users: userId}).populate('users', 'username').sort({'messages.timestamp': -1})
     const roomData= await Promise.all( rooms.map( async room =>{
@@ -127,7 +169,7 @@ try {
       }
     }))
     //render the filtered users using the ejs template
-    res.render('home', {users:filteredUsers, chats: roomData})
+    res.render('home', {users:filteredUsers, chats: roomData, loggedInUser:loggedInUser})
   } catch (error) {
     res.status(500).send({error: error.message})
   }
@@ -235,7 +277,7 @@ io.on('connection', (socket)=>{
       }
 
       // add the message to the rooms message array
-      const newMessage = { message: data.message, senderId: data.username};
+      const newMessage = { message: data.message, senderId: data.username, timestamp: data.currentDate};
       room.messages.push(newMessage);
       await room.save();
 
