@@ -8,6 +8,7 @@ const roomSchema = new mongoose.Schema({
         senderId: String,
         message:  String,
         timestamp: String,
+        imgUrl: String,
     }],
 });
 

@@ -23,17 +23,20 @@
                     <div class="chat-message">
                         <p class="message-sender"><%= message.senderId %></p>
                         <p class="message-text"><%=message.message %></p>
+                        <a href="<%=message.imgUrl %>"><img src="<%=message.imgUrl %>" alt="" id="message-image"></a>
                         <p class="timeStamp"><%=message.timestamp %></p>
                     </div>
                 </div>
            <% }) %>
         </div>
-        <form onsubmit="sendMessage()">
+        <form onsubmit="sendMessage()" enctype="multipart/form-data">
             <textarea id="message-input" cols="100" rows="2" placeholder="your message"></textarea>
+            <input type="file" name="file" id="file">
             <button id="sendBtn" type="submit"><i class="fas fa-paper-plane fa-2x" id="arrow-down"></i></button>
         </form>
     </main>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         const socket = io();
 const roomId= '<%= roomId %>';
@@ -48,20 +51,86 @@ socket.emit('join room', {roomId, username, token});
 
 
 //send messages
-const messageInput= document.getElementById('message-input');
-const sendBtn= document.getElementById('sendBtn');
-sendBtn.addEventListener('click', (event)=>{
-    event.preventDefault();
-    let currentDate= `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}  ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-    console.log(currentDate)
-    const message= document.getElementById('message-input').value;
+const messageInput = document.getElementById('message-input');
+const sendBtn = document.getElementById('sendBtn');
+
+sendBtn.addEventListener('click', async (event) => {
+  event.preventDefault();
+
+  // Get the selected file
+  const fileInput = document.getElementById('file');
+  const file = fileInput.files[0];
+
+  // Check if a file was selected
+  if (file) {
+    // Create a new form data object
+    const formData = new FormData();
+    formData.append('image', file);
+
+    // Use Axios to upload the image to ImgBB
+    const response = await axios.post('https://api.imgbb.com/1/upload', formData, {
+      headers: {
+        'content-type': 'multipart/form-data'
+      },
+      params: {
+        key: '6ec3827f4865e3031a08d0cabde77286'
+      }
+    });
+
+    // Get the image URL from the ImgBB API response
+    const imageUrl = response.data.data.url;
+
+    // Create the current date variable for the message
+    const currentDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}  ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
+    // Get the message text from the input field
+    const message = messageInput.value;
+
+
+    // Send the private message to the server
+    socket.emit('private message', {
+      message,
+      roomId,
+      username,
+      token,
+      currentDate,
+      file: imageUrl
+    });
+
+    // Clear the message input field
+    messageInput.value = '';
+    fileInput.value="";
+  } else {
+    // If no file was selected, send the message without an image
+    // Create the current date variable for the message
+    const currentDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}  ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
+    // Get the message text from the input field
+    const message = messageInput.value;
+
+    // Check if the message is empty
     if (message === '') {
-        alert('The input is empty, please write a message')
-    }else{
-        socket.emit('private message', {message, roomId,  username, token, currentDate});
-    document.getElementById('message-input').value= '' ;
+      alert('The input is empty, please write a message');
+      return;
     }
-})
+
+    // Send the private message to the server
+    socket.emit('private message', {
+      message,
+      roomId,
+      username,
+      token,
+      currentDate,
+      file: null
+    });
+
+    // Clear the message input field
+    messageInput.value = '';
+  }
+});
+
+
+
 let messages=document.getElementById('messages')
 messages.scrollTop = messages.scrollHeight;
 // receive a message from the server

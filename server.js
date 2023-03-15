@@ -277,7 +277,12 @@ io.on('connection', (socket)=>{
       }
 
       // add the message to the rooms message array
-      const newMessage = { message: data.message, senderId: data.username, timestamp: data.currentDate};
+      const newMessage = {
+         message: data.message,
+          senderId: data.username,
+           timestamp: data.currentDate,
+            imgUrl:data.file,
+        };
       room.messages.push(newMessage);
       await room.save();
 
