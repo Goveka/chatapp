@@ -151,7 +151,7 @@ header{
 .message-content.sender-me > p{
     background: -webkit-linear-gradient(#fff, #333);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: black;
 }
 .message-content.sender-others{
     background-color: #f1f0f0;
