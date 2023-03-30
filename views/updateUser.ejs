@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat corp|| update your profile</title>
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="icon" type="image/svg" href="Image-109992454066564565404-1-iVBOR.png">
+</head>
+<body>
+    <header>
+            <h1> chat corp</h1>
+            <h2>update your profile</h2>
+            <img src="Image-109992454066564565404-1-iVBOR.png" alt="">
+        </header>
+        <main>
+            <div id="form">
+                <h2>Change or add to your profile</h2>
+                <% currentUser.forEach((user)=>{ %>
+                    <h4><%= user.username %></h4>
+                <form action="/updateProfile" method="post">
+                    <input type="hidden" name="username" value="<%= user.username %>">
+                    <label for="hobbies">Hobbies</label>
+                    <input type="text" name="hobbies" value="<%= user.hobbies %>">
+                    <label for="about">About yourself</label>
+                    <input type="text" name="selfDescription" id="about" value="<%= user.selfDescription %>">
+                    <label for="securityQuestion"> security Question</label>
+                    <input type="text" name="securityQuestion" id="securityQuestion" value="<%= user.securityQuestion %>">
+                    <label for="profilePicInput">update your profile picture</label>
+                    <input type="file" id="profilePicInput" onchange="addProfilePic()">
+                    <input type="hidden" name="profilePic" id="profilePic" value="<%= user.profilePic %>">
+                    <button type="submit">update</button>
+                </form>
+                <% }) %>
+            </div>
+        </main>
+        <footer>
+            <h2 class="footer">copyright<i class="fas fa-copyright"></i> 2023 - present| chat corp| developed by sizwe| Email:sizwenkala80@gmail.com</h2>
+          </footer>
+
+          <script>
+             async function addProfilePic(){
+    const profilePicInput= document.getElementById('profilePicInput');
+    const file= profilePicInput.files[0];
+
+    // Create a new form data object
+    const formData = new FormData();
+    formData.append('image', file);
+
+    // Use Axios to upload the image to ImgBB
+    const response = await axios.post('https://api.imgbb.com/1/upload', formData, {
+      headers: {
+        'content-type': 'multipart/form-data'
+      },
+      params: {
+        key: '6ec3827f4865e3031a08d0cabde77286'
+      }
+    });
+
+    // Get the image URL from the ImgBB API response
+    const imgSrcInput= document.getElementById("profilePic");
+    const imageUrl = response.data.data.url;
+    imgSrcInput.value=imageUrl;
+    alert('Your profile picture has been added, click on the button to save')
+}
+
+          </script>
+</body>
+</html>

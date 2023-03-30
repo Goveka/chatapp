@@ -1,5 +1,5 @@
 header {
-    background-color: #2f3640;
+    background-color: #000000;
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -86,10 +86,11 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #0e08089d;
+    background-color: #000000;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
   }
   
   form {
@@ -98,6 +99,7 @@ main {
     justify-content: center;
     align-items: center;
     width: 100%;
+    color: #fff;
   }
   
   input[type="text"],
@@ -113,7 +115,7 @@ main {
   }
   
   button[type="submit"] {
-    background-color: #2196F3;
+    background-color: #038eff;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -137,10 +139,11 @@ main {
   label {
     font-size: 1.2rem;
     font-weight: bold;
+    color: #fff;
   }
   
   a {
-    color: #2196F3;
+    color: #018afa;
   }
   
   footer {

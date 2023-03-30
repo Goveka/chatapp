@@ -11,13 +11,12 @@
 </head>
 <body>
     <header>
-        <h1>chat room</h1>
-        <h2><%= receiverUsername %></h2>
-        <img src="<%=receiverProfilePic %>" alt="profile picture">
+        <h1> live chat room</h1>
+        <img src="Image-109992454066564565404-1-iVBOR.png" alt="">
     </header>
     <main id="main">
         <div id="messages">
-            <% roomMessages.forEach((message)=>{ %>
+            <% messages.forEach((message)=>{ %>
                 <div class="message-content <%= message.senderId === userName ? 'sender-me': 'sender-others' %>" id="message-content">
                     <div class="chat-message">
                         <p class="message-sender"><%= message.senderId %></p>
@@ -38,17 +37,12 @@
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+
         const socket = io();
-const roomId= '<%= roomId %>';
-const username= '<%= userName %>'
-const token= '<%= token %>'
 
-
-
-// joining the room on load
-socket.emit('join room', {roomId, username, token});
-
-
+        const username= '<%= userName %>'
+        // joining the room on load
+socket.emit('join room', { username});
 //send messages
 const messageInput = document.getElementById('message-input');
 const sendBtn = document.getElementById('sendBtn');
@@ -85,14 +79,10 @@ sendBtn.addEventListener('click', async (event) => {
 
     // Get the message text from the input field
     const message = messageInput.value;
-
-
     // Send the private message to the server
-    socket.emit('private message', {
-      message,
-      roomId,
+    socket.emit('live chat', {
       username,
-      token,
+      message,
       currentDate,
       file: imageUrl
     });
@@ -116,11 +106,9 @@ sendBtn.addEventListener('click', async (event) => {
     }
 
     // Send the private message to the server
-    socket.emit('private message', {
-      message,
-      roomId,
+    socket.emit('live chat', {
       username,
-      token,
+      message,
       currentDate,
       file: null
     });
@@ -137,7 +125,7 @@ sendBtn.addEventListener('click', async (event) => {
 let messages=document.getElementById('messages')
 messages.scrollTop = messages.scrollHeight;
 // receive a message from the server
-socket.on('private message', (data)=>{
+socket.on('live chat', (data)=>{
 const messageDiv= document.createElement('div');
  messageDiv.classList.add('message-content');
  messageDiv.classList.add(data.senderId === username ? 'sender-me' : 'sender-others')

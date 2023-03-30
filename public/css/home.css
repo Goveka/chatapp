@@ -12,14 +12,24 @@
   /* Style the header section */
   header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #cab8b8;
+    background-color: #080808;
     border-bottom: 1px solid #ccc;
+    color: #fff;
   }
   header img {
     height: 50px;
+  }
+
+  a {
+    color: #0084ff;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
   }
   
   #loggedInUserIcon {
@@ -47,7 +57,7 @@
   /* Style the main section */
   main {
     padding: 20px;
-    background-color: #f1f1f1;
+    background-color: #ffffff;
   }
   
   #users {
@@ -62,10 +72,6 @@
     justify-content: space-between;
   }
   
-  #arrow-down {
-    margin-left: 10px;
-    cursor: pointer;
-  }
   
   #userList {
     display: flex;
@@ -77,9 +83,10 @@
     margin: 10px;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.308);
     overflow: hidden;
     cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.301);
   }
   
   .userList img {
@@ -131,6 +138,7 @@
   #private-chats p {
     font-size: 16px;
     margin: 0;
+    overflow-wrap: break-word;
   }
   
   /* Style the footer section */

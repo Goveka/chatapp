@@ -7,18 +7,22 @@
     <title>chat corp|| home</title>
     <link rel="stylesheet" href="./css/all.min.css">
     <link rel="stylesheet" href="./css/home.css">
+    <link rel="icon" type="image/svg" href="Image-109992454066564565404-1-iVBOR.png">
 </head>
 <body>
     <header>
         <div id="loggedInUserIcon">
             <% loggedInUser.forEach((user)=>{ %>
-            <img src="<%= user.profilePic %>" alt="profile">
-            <h2><%= user.username %></h2>
+                <a href="/updateProfile">
+                    <img src="<%= user.profilePic %>" alt="profile">
+                    <h2><%= user.username %></h2>
+                </a>
             <% }) %>
         </div>
         <h1>Chat corp</h1>
         <h2>welcome</h2>
         <img src="Image-109992454066564565404-1-iVBOR.png" alt="">
+        <a href="/liveChat">live chat</a>
     </header>
     <main>
         <div id="users">
@@ -39,9 +43,9 @@
             <h4>click on a unique room to continue your chats</h4>
             <% chats.forEach((privateChats)=>{ %>
                 <div id="private-chats">
-                    <a href="/private-rooms/<%= privateChats.roomId %>">
+                    <a href="/private-rooms/<%= privateChats.roomId %>/<%= privateChats.recipientId %>">
                         <h2><%= privateChats.recipientName %></h3>
-                        <p> lastMessage: <%= privateChats.lastMessage %></p>
+                        <p><%= privateChats.lastMessage %></p>
                     </a>
                 </div>
             <% }) %>

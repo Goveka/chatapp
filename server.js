@@ -15,8 +15,10 @@ const cookieParser= require('cookie-parser');
 
 // importing database models
 const User= require('./model/User');
-const Room= require('./model/Room')
+const Room= require('./model/Room');
+const LiveChat= require('./model/liveChat');
 const { Socket } = require('net');
+const liveChat = require('./model/liveChat');
 
 
 // middleware
@@ -53,7 +55,7 @@ app.get('/',(req,res)=>{
 
 // rendering the login page
 app.get('/login-page', (req,res)=>{
-  res.render('login', {})
+  res.render('login', {message: ''})
 })
 
 //rendering the recovery page
@@ -69,7 +71,7 @@ const password= req.body.password;
 User.findOne({ username})
 .then(user => {
   if(!user){
-    return res.status(404).json({ username: "user not found"})
+    return res.render('login' , {message: "'username not found, create an account if you don't have an account"});
   }
 
   if(user.password === password){
@@ -81,7 +83,7 @@ User.findOne({ username})
     //rendering the home page
     return res.status(200).redirect('/home-page');
   }else{
-    return res.status(404).json({ password: "password incorect"})
+    return res.render('login' , {message: "incorrect password, Try again or recover your'e account"});
   }
 })
 .catch(err => console.log(err));
@@ -99,7 +101,7 @@ app.post('/signUp', async(req,res)=>{
   // create new user
   const newUser = new User({username, password, profilePic,hobbies,selfDescription, securityQuestion})
   await newUser.save();
-  res.render('login', {})
+  res.render('login', {message: ''})
 });
 
 //RECOVERING THE USER ACCOUNT WHEN THEY HAVE FORGOTEN IT
@@ -131,12 +133,13 @@ app.post('/update-password', (req,res)=>{
               res.sendStatus(500)
               console.error(err)
           }else {
-            return res.render('login')
+            return res.render('login', {message: ""})
           }
       })
   }
    })
 })
+
 
 //rendering the home page
 app.get('/home-page', async(req,res)=>{
@@ -151,19 +154,20 @@ try {
   }
   // retrieve all users from the database
   try {
-    const users = await User.find({});
+      const users = await User.find({});
     //filter out the user with the decoded user id
-    const filteredUsers = users.filter(user => user._id.toString() !== userId)
-    const loggedInUser= users.filter(user => user._id.toString() === userId)
+      const filteredUsers = users.filter(user => user._id.toString() !== userId)
+      const loggedInUser= users.filter(user => user._id.toString() === userId)
     // rendering each chat room based on if the user is present in the room
-    const rooms= await Room.find({users: userId}).populate('users', 'username').sort({'messages.timestamp': -1})
-    const roomData= await Promise.all( rooms.map( async room =>{
+      const rooms= await Room.find({users: userId}).populate('users', 'username').sort({'messages.timestamp': -1})
+      const roomData= await Promise.all( rooms.map( async room =>{
       const lastMessage= room.messages[room.messages.length - 1]
       const recipientId = room.users.find(user => user._id.toString() !== userId).id
       const recipient= await User.findById(recipientId);
       const recipientName = recipient ? recipient.username : 'unknown'
       return {
         roomId: room._id,
+        recipientId:recipientId,
         recipientName: recipientName,
         lastMessage: lastMessage ? ` ${lastMessage.senderId}: ${lastMessage.message}`: 'no messages yet'
       }
@@ -182,18 +186,67 @@ function authenticateUser(req,res,next) {
   // check if the user has a token in the cookie
   const token = req.cookies.token;
   if(!token){
-    return res.status(401).json({message: "unauthorized access, try logging in again"});
+    return res.status(404).redirect('/login-page');
   }
   // verify the token and extract the user information
   jwt.verify(token, "secret-key", (err,decoded)=>{
     if(err) {
-      return res.status(401).json({message: "unauthorized access, try logging in again"});
+      return res.status(404).redirect('/login-page');
     }
     // set the user object in the request
     req.user= decoded;
     next();
   })
 }
+// updating the user profile
+app.get('/updateProfile', async (req,res)=>{
+  const cookie= req.cookies.token;
+
+  try {
+     // finding the user infomation stored in the cookie
+  //decoding the token to get the user infomation
+  let decode = jwt.verify(cookie, 'secret-key');
+  let userId= decode.id;
+  if (!decode){
+    return res.render('login', {message: 'your session has expired'})
+  }
+
+  try {
+        const users = await User.find({});
+        const loggedInUser= users.filter(user => user._id.toString() === userId)
+        res.render('updateUser', {currentUser: loggedInUser,})
+  } catch (error) {
+    res.status(500).send({error: error.message}) 
+  }
+  } catch (error) {
+    return res.render('login', {message: 'your session has expired, please login again'})
+  }
+})
+
+app.post('/updateProfile', async (req,res)=>{
+  const {username, hobbies, selfDescription,securityQuestion, profilePic}= req.body;
+
+  User.findOne({username:username}, (err, object)=>{
+    if (err) {
+      res.sendStatus(500)
+  }else {
+      object.hobbies = hobbies;
+      object.selfDescription= selfDescription;
+      object.profilePic= profilePic
+      object.securityQuestion= securityQuestion;
+      object.save(function(err){
+          if (err){
+              res.sendStatus(500)
+              console.error(err)
+          }else {
+            return res.status(200).send("your profile has been updated")
+          }
+      })
+  }
+   })
+})
+
+
 // middleware thats responsible for chaining  the requests
 app.use(authenticateUser)
 
@@ -217,7 +270,7 @@ app.post('/chat-rooms', async (req,res)=>{
       })
     } else{
       const newRoom = new Room({
-        receipientId: receiverId,
+        recipientId: receiverId,
         users: [senderId,receiverId],
         messages: []
       });
@@ -233,8 +286,9 @@ app.post('/chat-rooms', async (req,res)=>{
   }
 })
 
-app.get('/private-rooms/:id', async (req,res)=>{
+app.get('/private-rooms/:id/:recipientId', async (req,res)=>{
   try {
+    const recipientId= req.params.recipientId;
     const roomId = req.params.id;
     const room = await Room.findById(roomId);
     const roomMessages=room.messages
@@ -248,14 +302,54 @@ app.get('/private-rooms/:id', async (req,res)=>{
       return res.status(401).json({error: 'unAuthorized access, try logging in'})
     }
     const username= await User.findById(user.id)
-    const userName= username.username
-    res.render('private-chat', {roomId, userName, roomMessages, token});
+    const userName= username.username;
+    const recipientUsername= await User.findById(recipientId);
+    const receiverUsername= recipientUsername.username;
+    const receiverProfilePic= recipientUsername.profilePic;
+    res.render('private-chat', {
+      roomId,
+       userName,
+        roomMessages,
+         token,
+         receiverUsername,
+         receiverProfilePic });
 
   } catch (error) {
     res.status(500).send({error: error.message})
   }
 })
-
+// rendering the live chat room
+app.get('/liveChat',async (req,res)=>{
+ // checking if the user is logged in
+ const cookie= req.cookies.token;
+ try {
+   // finding the user infomation stored in the cookie
+  //decoding the token to get the user infomation
+  let decode = jwt.verify(cookie, 'secret-key');
+  let userId= decode.id;
+  if (!decode){
+    return res.render('login', {message: 'your session has expired'})
+  }
+  try {
+    const messages=await LiveChat.find({});
+    const username= await User.findById(userId)
+    const userName= username.username;
+    res.render('liveChat', {messages:messages, userName:userName})
+  } catch (error) {
+    return res.render('login', {message: 'your session has expired, please login again'})
+  }
+ } catch (error) {
+  return res.render('login', {message: 'your session has expired, please login again'})
+ }
+})
+// deleting a message
+app.post('/delete-message', (req,res)=>{
+  const message = req.body.textMsg;
+  Room.deleteOne({messages: message}, (err)=>{
+    if (err) throw err;
+        console.log('item deleted')
+    })
+      })
 // THE SOCKET.IO CONNECTION THE HANDLE REAL TIME CHAT
 io.on('connection', (socket)=>{
 
@@ -265,11 +359,7 @@ io.on('connection', (socket)=>{
   })
 
   socket.on('private message', async (data)=>{
-  
     try {
-      const token= data.token
-      const decoded= jwt.verify(token, 'secret-key');
-      const userId=decoded.id;
       //find the room and add a message to its arrary
       const room = await Room.findById(data.roomId)
       if (!room) {
@@ -293,10 +383,27 @@ io.on('connection', (socket)=>{
       socket.emit("error", {message: 'an error occured when sending a message'})
     }
   })
+
+  //sending messages
+  socket.on('live chat', async (data)=> {
+    try {
+           // add the message to the rooms message array
+           const newMessage = new LiveChat({
+            message: data.message,
+             senderId: data.username,
+              timestamp: data.currentDate,
+               imgUrl:data.file,
+           });
+         await newMessage.save();
+         io.emit('live chat', newMessage);
+    } catch (error) {
+      socket.emit("error", {message: 'an error occured when sending a message'})
+    }
+  })
  
   socket.on('disconnect', ()=> {
   })
 })
 
 
-http.listen(port, ()=> console.log(`server is on port ${port}`))
+http.listen(port, ()=> console.log(`server is on port ${port}`));

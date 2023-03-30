@@ -14,9 +14,9 @@ userList.forEach( async function(user){
         .then((data)=> {
             const roomId = data.roomId;
             if (data.roomExists) {
-                window.location.href = `/private-rooms/${roomId}`;  
+                window.location.href = `/private-rooms/${roomId}/${receiverId}`;  
             } else {
-                window.location.href = `/private-rooms/${roomId}`;
+                window.location.href = `/private-rooms/${roomId}/${receiverId}`;
             }
         })
         .catch((error) => console.log(error))

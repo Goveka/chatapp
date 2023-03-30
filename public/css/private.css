@@ -1,23 +1,24 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Set global styles */
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-body{
-    font-family: 'Times New Roman', Times, serif;
-    background-image: url("cool-background.png");
-    background-repeat: repeat;
-}
-
-<<<<<<< HEAD
-/* Style for header section */
+/* Set styles for header */
 header {
-    background-color: #f7f7f7;
-    padding: 20px;
-    text-align: center;
-    font-size: 24px;
-  }
+  background-color: #000000;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin: 0;
+}
+header img {
+  height: 50px;
+}
   
   h1 {
     margin: 0;
@@ -37,218 +38,80 @@ header {
     flex-direction: column;
     align-items: center;
   }
-  
-  .chat-header {
-    width: 100%;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
+
+  #messages{
+    background-color: #000000;
+    width: 450px;
+    color: #fff;
+    height: 76vh;
+    padding: 1%;
+    overflow: auto;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding-bottom: 2%;
   }
-  
-  .message-content {
-    margin-top: 10px;
-    max-width: 70%;
+
+  .sender-me{
+    background-color: rgba(0, 17, 255, 0.973);
+    border-radius: 10px;
+    margin: 3%;
+    margin-left: 50%;
+    overflow-wrap: break-word;
+    max-width: 60%;
+    padding: 2%;
+  }
+  .sender-me >div > h4:hover{
+    color: red;
+  }
+  .message-text{
+    overflow-wrap: break-word;
+    font-weight: bolder;
+  }
+  .sender-others{
+    background-color: #ffffffc2;
+    max-width: 60%;
+    border-radius: 10px;
+    margin: 3%;
+    padding: 2%;
+    overflow-wrap: break-word;
+    color: black;
+  }
+.sender-others >div > h4{
+  display: none;
+}
+  form{
+    position: fixed;
+    bottom: 0;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    width: 100%;
+    background-color: #000000;
+    padding: 2px;
   }
-  
-  .sender-me {
-    align-self: flex-end;
-  }
-  
-  .chat-message {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-  }
-  
-  .message-sender {
+
+  #message-input{
+    width: 60%;
     margin: 0;
-    font-weight: bold;
+    margin-left: 5%;
+    background-color: #ffffff;
+    text-align: center;
+    border: 2px solid black;
   }
-  
-  .message-text {
-    margin: 5px 0;
-  }
-  
-  #message-image {
-    max-width: 100%;
-    margin: 5px 0;
-  }
-  
-  .timeStamp {
-    margin: 5px 0;
-    font-size: 12px;
-  }
-  
-  form {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  #message-input {
-    width: 100%;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  #file {
-    margin-bottom: 10px;
-  }
-  
-  #sendBtn {
-    background-color: #007bff;
+
+  button[type="submit"] {
+    background-color: #2196F3;
     color: #fff;
     border: none;
-    padding: 10px 20px;
     border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  #sendBtn:hover {
+    font-size: 1.2rem;
     cursor: pointer;
-    background-color: #0069d9;
   }
   
-=======
-header{
-    background: rgb(63,94,251);
-    background: radial-gradient(circle,rgba(63,94,251,1)0%,rgba(0,0,0,1)0%,rgb(3, 18, 87));
-    display: flex;
-    height: auto;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(5px + 2vmin);
+  button[type="submit"]:hover {
+    background-color: #0D47A1;
+  }
+
+  #file{
     color: white;
-}
-
-#messages{
-    margin-top: 3%;
-    width: 50%;
-    height: 72vh;
-    overflow: auto;
-    margin-left: 23%;
-    background-color: #0a0909;
-    padding: 2%;
-}
-.message-content{
-    padding: 10px;
-    border-radius: 10px;
-    max-width: 60%;
-}
-.message-content.sender-me{
-    background-color: #007bff;
-    color: white;
-    margin-left: auto;
-    margin-bottom: 2%;
-    overflow-wrap: break-word;
-}
-.message-content.sender-me > p{
-    background: -webkit-linear-gradient(#fff, #333);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.message-content.sender-others{
-    background-color: #f1f0f0;
-    color: #333;
-    margin-bottom: 2%;
-    overflow-wrap: break-word;
-}
-
-#message-image{
-    max-width: 80%;
-}
-
-form{
-    margin-top: 0%;
-    margin-left: 12%;
-}
-form > textarea{
-    width: 75%;
-    border-radius: 2vh;
-    text-align: center;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-form > button{
-    width: 5%;
     font-weight: bolder;
-    background-color: black;
-    color: blue;
-}
-form > button:hover{
-    background-color: white;
-}
-
-.message-text{
-    font-weight: bolder;
-    font-size: 1.3rem;
-}
-.timeStamp{
-font-size: 0.7rem;
-}
-.message-sender{
-    font-size: 0.9rem;
-}
-
-@media only screen and (min-width:50px) and (max-width:480px) {
-    #messages{
-        margin: 1%;
-        width: 100%;
-        height: 82vh;
-        overflow: auto;
-        background-color: #0a0909;
-        padding: 2%;
-    }
-    form > button{
-        width: 10%;
-        font-weight: bolder;
-        background-color: black;
-        color: blue;
-    }
-
-    form{
-        margin-top: 0%;
-        margin-left: 1%;
-    }
-    form > textarea{
-        width: 100%;
-        border-radius: 2vh;
-        text-align: center;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    }
-}
-
-@media only screen and (min-width:481px) and (max-width:1118px) {
-    #messages{
-        margin: 1%;
-        margin-left: 3%;
-        width: 85%;
-        height: 82vh;
-        overflow: auto;
-        background-color: #0a0909;
-        padding: 2%;
-    }
-    form > button{
-        width: 10%;
-        font-weight: bolder;
-        background-color: black;
-        color: blue;
-    }
-
-    form{
-        margin-top: 0%;
-        margin-left: 1%;
-    }
-    form > textarea{
-        width: 85%;
-        border-radius: 2vh;
-        text-align: center;
-        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    }
-}
->>>>>>> b3428462175770651ad3070cc3c345cd9e80059d
+  }
