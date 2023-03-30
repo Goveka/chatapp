@@ -113,5 +113,56 @@ header img {
 
   #file{
     color: white;
+}
+
+#messages{
+    margin-top: 3%;
+    width: 50%;
+    height: 72vh;
+    overflow: auto;
+    margin-left: 23%;
+    background-color: #0a0909;
+    padding: 2%;
+}
+.message-content{
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 60%;
+}
+.message-content.sender-me{
+    background-color: #007bff;
+    color: white;
+    margin-left: auto;
+    margin-bottom: 2%;
+    overflow-wrap: break-word;
+}
+.message-content.sender-me > p{
+    background: -webkit-linear-gradient(#fff, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: black;
+}
+.message-content.sender-others{
+    background-color: #f1f0f0;
+    color: #333;
+    margin-bottom: 2%;
+    overflow-wrap: break-word;
+}
+
+#message-image{
+    max-width: 80%;
+}
+
+form{
+    margin-top: 0%;
+    margin-left: 12%;
+}
+form > textarea{
+    width: 75%;
+    border-radius: 2vh;
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+form > button{
+    width: 5%;
     font-weight: bolder;
   }
