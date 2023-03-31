@@ -29,7 +29,7 @@
                     <label for="securityQuestion"> security Question</label>
                     <input type="text" name="securityQuestion" id="securityQuestion" value="<%= user.securityQuestion %>">
                     <label for="profilePicInput">update your profile picture</label>
-                    <input type="file" id="profilePicInput" onchange="addProfilePic()">
+                    <input type="file" id="profilePicInput" onchange="addProfilePic()"  accept="image/*">
                     <input type="hidden" name="profilePic" id="profilePic" value="<%= user.profilePic %>">
                     <button type="submit">update</button>
                 </form>
@@ -39,7 +39,7 @@
         <footer>
             <h2 class="footer">copyright<i class="fas fa-copyright"></i> 2023 - present| chat corp| developed by sizwe| Email:sizwenkala80@gmail.com</h2>
           </footer>
-
+          <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
           <script>
              async function addProfilePic(){
     const profilePicInput= document.getElementById('profilePicInput');

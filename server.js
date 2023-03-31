@@ -342,14 +342,6 @@ app.get('/liveChat',async (req,res)=>{
   return res.render('login', {message: 'your session has expired, please login again'})
  }
 })
-// deleting a message
-app.post('/delete-message', (req,res)=>{
-  const message = req.body.textMsg;
-  Room.deleteOne({messages: message}, (err)=>{
-    if (err) throw err;
-        console.log('item deleted')
-    })
-      })
 // THE SOCKET.IO CONNECTION THE HANDLE REAL TIME CHAT
 io.on('connection', (socket)=>{
 

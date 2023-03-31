@@ -23,14 +23,13 @@
                         <p class="message-text"><%=message.message %></p>
                         <a href="<%=message.imgUrl %>"><img src="<%=message.imgUrl %>" alt="" id="message-image"></a>
                         <p class="timeStamp"><%=message.timestamp %></p>
-                        <h4 class="deleteMsg"><i class="fas fa-trash-alt fa-1x"></i></h4>
                     </div>
                 </div>
            <% }) %>
         </div>
         <form onsubmit="sendMessage()" enctype="multipart/form-data">
           <textarea id="message-input" cols="100" rows="2" placeholder="your message"></textarea>
-          <input type="file" name="file" id="file">
+          <input type="file" name="file" id="file"  accept="image/*">
           <button id="sendBtn" type="submit"><i class="fas fa-paper-plane fa-2x" id="arrow-down"></i></button>
          </form>
     </main>
@@ -145,18 +144,6 @@ messages.scrollTop = messages.scrollHeight;
 const main=document.getElementById('main');
 main.scrollTop = main.scrollHeight;
 
-const deleteMsg=document.querySelectorAll(".deleteMsg").forEach(element => {
-  element.addEventListener('click', (event)=>{
-    let textMsg=event.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling;
-    const request= new XMLHttpRequest();
-    request.open('Post', '/delete-message');
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    request.send(`message=${textMsg}`);
-    setTimeout(function(){
-    window.location.reload();
-}, 1000)
-  })
-});
 
     </script>
 </body>
