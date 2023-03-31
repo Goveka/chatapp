@@ -88,6 +88,7 @@ main {
     align-items: center;
     background-color: #000000;
     padding: 30px;
+    width: 400px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     color: #fff;
@@ -98,7 +99,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 80%;
     color: #fff;
   }
   
