@@ -15,13 +15,12 @@
             <% loggedInUser.forEach((user)=>{ %>
                 <a href="/updateProfile">
                     <img src="<%= user.profilePic %>" alt="profile">
-                    <h2><%= user.username %></h2>
                 </a>
             <% }) %>
         </div>
         <h1>Chat corp</h1>
+         <button><a href="/liveChat">live chat</a></button>
         <img src="Image-109992454066564565404-1-iVBOR.png" alt="">
-        <a href="/liveChat">live chat</a>
     </header>
     <main>
         <div id="users">

@@ -1,3 +1,13 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  width: 100%;
+}
+
 header {
     background-color: #000000;
     color: #fff;
@@ -6,6 +16,7 @@ header {
     align-items: center;
     justify-content: center;
     padding: 30px;
+    width: 100%;
   }
   
   header h1 {
@@ -55,6 +66,7 @@ main {
     justify-content: center;
     align-items: center;
     padding: 50px;
+    width: 100%;
   }
   
   #profile-container {
@@ -88,7 +100,7 @@ main {
     align-items: center;
     background-color: #000000;
     padding: 30px;
-    width: 400px;
+    width: 450px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
     color: #fff;
@@ -99,7 +111,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 100%;
     color: #fff;
   }
   
@@ -151,5 +163,6 @@ main {
     background-color: #222;
     color: #fff;
     font-size: 0.8rem;
-    padding: 1
+    padding: 1;
+    width: 100%;
   }

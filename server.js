@@ -18,7 +18,6 @@ const User= require('./model/User');
 const Room= require('./model/Room');
 const LiveChat= require('./model/liveChat');
 const { Socket } = require('net');
-const liveChat = require('./model/liveChat');
 
 
 // middleware
